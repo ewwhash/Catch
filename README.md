@@ -8,7 +8,7 @@ For **OpenOS**, just run this command:
 wget -f https://raw.githubusercontent.com/BrightYC/Catch/main/catch.lua /bin/catch.lua
 ```
 
-For **MineOS** you can download an app called 'Catch' in the App Market.
+For **MineOS** you can download an app called `Catch` in the App Market.
 
 ## Usage
 
@@ -24,4 +24,10 @@ In MineOS, you can only encrypt the root directory. If you'll try to open init.l
 If you run init.lua with argument `rootfs`, it will run root filesystem encrypting app.
 
 ## Iter-time
-Iter times defines KDF iterations, that means if the number are high - the drive will be harder to crack. But if iteration count are too high - deriving key will be too slow. Default value is `5000`.
+Iter times defines KDF iterations, that means if the number are high - the drive will be harder to crack. But if iteration count are too high - deriving key will be too slow. Default value is `5000`. You can specify iter-time only in OpenOS. 
+
+Example: `catch --encrypt --iter-time=3000`
+
+## MineOS app
+
+![](https://i.imgur.com/1KchSct.png)
