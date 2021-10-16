@@ -159,14 +159,14 @@ local function encryptDrive(address, key, nonce, header, encryptingStatus, lowMe
         component.invoke(address, "rename", fullPath, encryptedPath)
         return encryptedName
     end)
-
-    component.invoke(address, "makeDirectory", config.workingDirectory)
+	
     local list = component.invoke(address, "list", "/")
+    component.invoke(address, "makeDirectory", config.workingDirectory)
 
     for i = 1, list.n do
         component.invoke(address, "rename", list[i], config.workingDirectory .. list[i])
     end
-
+    
     rawWrite(component.invoke, address, "/init.lua", rawRead(component.invoke, computer.tmpAddress(), "/catch_init.lua"))
     rawWrite(component.invoke, address, config.headerPath, header)
     encryptingStatus(100)
