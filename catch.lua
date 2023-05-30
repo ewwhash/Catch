@@ -79,7 +79,7 @@ local function processSubdir(invoke, address, path, oldPath, onFile)
     local list = invoke(address, "list", path)
 
     if list then
-        for i = 1, list.n do
+        for i = 1, #list do
             local name, count = list[i]:gsub("/", "")
             local isDirectory = count > 0 and true or false
             local newName = onFile(name, isDirectory, path, oldPath) or name
@@ -163,7 +163,7 @@ local function encryptDrive(address, key, nonce, header, encryptingStatus, lowMe
     local list = component.invoke(address, "list", "/")
     component.invoke(address, "makeDirectory", config.workingDirectory)
 
-    for i = 1, list.n do
+    for i = 1, #list do
         component.invoke(address, "rename", list[i], config.workingDirectory .. list[i])
     end
     
@@ -198,7 +198,7 @@ local function decryptDrive(invoke, address, key, nonce, decryptingStatus, lowMe
     invoke(address, "remove", "/init.lua")
     local list = invoke(address, "list", config.workingDirectory)
 
-    for i = 1, list.n do
+    for i = 1, #list do
         invoke(address, "rename", config.workingDirectory .. list[i], "/" .. list[i])
     end
 
