@@ -234,7 +234,7 @@ local function list(address, key, nonce, workingDirectory, path)
     local files = invoke(address, "list", mappedPath)
 
     if files then
-        for i = 1, files.n do
+        for i = 1, #files do
             local file, count = files[i]:gsub("/", "")
             files[i] = encrypt(base64.decode(file), key, nonce) .. (count > 0 and "/" or "")
         end
